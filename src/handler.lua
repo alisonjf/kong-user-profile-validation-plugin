@@ -18,10 +18,12 @@ local function validate_profile(conf)
 	if profile_id == nil then
 		return false, { status = 428, message = "Header x-user-profile-id is missing"}
     end
-    if type(profile_id) ~= "number" then
+    profile_id = tonumber(profile_id)
+    if profile_id == nil then
         return false, { status = 412, message = "Header x-user-profile-id must be a number"}
     end
-    if profile_id > conf.minimum_allowed_profile_id then
+    local min_allowed_id = tonumber(conf.minimum_allowed_profile_id)
+    if profile_id > min_allowed_id then
         return false, { status = 403, message = string.format("Profile ID %s is not allowed", profile_id)}
     end
 
