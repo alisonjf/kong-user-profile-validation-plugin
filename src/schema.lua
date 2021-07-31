@@ -1,4 +1,3 @@
-local typedefs = require "kong.db.schema.typedefs"
 
 return {
   name = "user-profile-validation",
@@ -6,7 +5,6 @@ return {
     { config = {
         type = "record",
         fields = {
-          { consumer = typedefs.no_consumer },  -- this plugin cannot be configured on a consumer (typical for auth plugins)
           { minimum_allowed_profile_id = { 
             type = "number", 
             required = true,
