@@ -7,12 +7,10 @@ return {
         type = "record",
         fields = {
           { consumer = typedefs.no_consumer },  -- this plugin cannot be configured on a consumer (typical for auth plugins)
-          { 
-            allowed_profiles_ids = { 
-              type = "array", 
-              match_none = { {pattern = "^$",err = "Allowed profile ids cannot be empty",}, },
-              elements = { type = "number", required = true },
-            },
+          { minimum_allowed_profile_id = { 
+            type = "number", 
+            required = true,
+            match_none = { {pattern = "^$",err = "Minimum allowed profile id cannot be empty",}, } }, 
           },
         },
       },
